@@ -34,10 +34,11 @@ func main() {
 			selectNumStr := course.MustElementsX(`.//a[@title="详细信息"]`)[1].MustText()
 			fullNumStr := course.MustElementsX(`.//td[@class="bt06"]`)[6].MustText()
 			courseTeacher := course.MustElementsX(`.//td[@class="bt06"]`)[2].MustText()
+			courseTime := course.MustElementsX(`.//td[@class="bt06"]`)[3].MustText()
 			selectNum, _ := strconv.Atoi(selectNumStr)
 			fullNum, _ := strconv.Atoi(fullNumStr)
 			if selectNum < fullNum {
-				text := fmt.Sprintf("%s的%s有%d空位。", courseTeacher, courseName, fullNum-selectNum)
+				text := fmt.Sprintf("%s %s 周的%s有 %d 个空位。", courseTeacher, courseTime, courseName, fullNum-selectNum)
 				notify(text)
 			}
 		}
